@@ -1,0 +1,5 @@
+---
+services: docker
+
+script:
+  - exit 0
