@@ -1,5 +1,8 @@
 ---
 services: docker
 
+env:
+  - test_script: go-hello-world
+
 script:
-  - exit 0
+  - ${PWD}/tests/${test_script}.sh

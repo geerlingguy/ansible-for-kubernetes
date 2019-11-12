@@ -1,14 +1,20 @@
 package main
 
 import (
-  "fmt"
-  "net/http"
+    "log"
+    "fmt"
+    "net/http"
 )
 
-func main() {
-  http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
-  })
+func HelloServer(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hello, you requested: %s", r.URL.Path)
+    log.Printf("Received request for path: %s", r.URL.Path)
+}
 
-  http.ListenAndServe(":8180", nil)
+func main() {
+    var addr string = ":8180"
+    handler := http.HandlerFunc(HelloServer)
+    if err := http.ListenAndServe(addr, handler); err != nil {
+        log.Fatalf("Could not listen on port %s %v", addr, err)
+    }
 }
