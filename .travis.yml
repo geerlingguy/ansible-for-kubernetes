@@ -1,5 +1,5 @@
 ---
-services: docker
+services: go
 
 env:
   - test_script: go-hello-world
