@@ -2,7 +2,7 @@
 services: go
 
 env:
-  - test_script: go-hello-world
+  - test_script: hello-go
 
 script:
   - ${PWD}/tests/${test_script}.sh

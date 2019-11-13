@@ -1,5 +1,5 @@
 #!/bin/bash
 #
-# Tests for go-hello-world example.
-cd go-hello-world/cmd/hello
+# Tests for hello-go example.
+cd hello-go/cmd/hello
 go test
