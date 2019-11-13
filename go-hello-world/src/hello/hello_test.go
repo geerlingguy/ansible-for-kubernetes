@@ -1,9 +1,9 @@
 package main
 
 import (
-    "testing"
     "net/http"
     "net/http/httptest"
+    "testing"
 )
 
 func TestGetHello(t *testing.T) {
