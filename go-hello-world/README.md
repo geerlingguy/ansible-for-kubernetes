@@ -3,10 +3,9 @@
 ## How to run
 
   1. [Install Go](https://golang.org/doc/install) on your computer.
-  2. On the command line, change directories to `src/hello`.
-  3. Run `go build`.
+  2. On the command line, in this directory, run `go build cmd/hello/hello.go`
 
-Go should generate a binary named `hello` in the `src/hello` directory. Run that binary with the command:
+Go should generate a binary named `hello`. Run that binary with the command:
 
     ./hello
 
@@ -18,7 +17,7 @@ When you're finished testing, press "Control + C" on the command line to exit th
 
 ## About the HTTP Server example
 
-The `hello.go` example is derived from [Go Web Examples](https://gowebexamples.com).
+The `hello.go` example was originally derived from [Go Web Examples](https://gowebexamples.com).
 
 ## About the Author
 
