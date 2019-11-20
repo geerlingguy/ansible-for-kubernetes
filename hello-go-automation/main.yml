@@ -1,0 +1,86 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    ansible_python_interpreter: '{{ ansible_playbook_python }}'
+    image_name: hello-go
+
+  pre_tasks:
+    - name: Check Minikube's status.
+      command: minikube status
+      register: minikube_status
+      changed_when: false
+      ignore_errors: true
+
+    - name: Start Minikube if it's not running.
+      command: minikube start
+      when: "not minikube_status.stdout or 'Running' not in minikube_status.stdout"
+
+  tasks:
+    # Build the hello-go Docker image inside Minikube's environment.
+    - name: Get existing image hash.
+      shell: |
+        eval $(minikube docker-env)
+        docker images -q {{ image_name }}
+      register: image_hash
+      changed_when: false
+
+    - name: Build Docker image if it's not already built.
+      shell: |
+        eval $(minikube docker-env)
+        docker build -f ../hello-go/Dockerfile -t {{ image_name }} ../hello-go
+      when: not image_hash.stdout
+
+    # Create Kubernetes resources to run Hello Go.
+    - name: Create a Deployment for Hello Go.
+      k8s:
+        state: present
+        definition:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: hello-go
+            namespace: default
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: hello-go
+            template:
+              metadata:
+                labels:
+                  app: hello-go
+              spec:
+                containers:
+                - name: hello-go
+                  image: hello-go
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                  - containerPort: 8180
+
+    - name: Create a Service for Hello Go.
+      k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: hello-go
+            namespace: default
+          spec:
+            type: LoadBalancer
+            ports:
+            - port: 8180
+              targetPort: 8180
+            selector:
+              app: hello-go
+
+  post_tasks:
+    - name: Expose Hello Go on the host via Minikube.
+      command: minikube service hello-go --url=true
+      register: minikube_service
+
+    - debug:
+        msg: "Hello Go URL: {{ minikube_service['stdout_lines'][0] }}"
