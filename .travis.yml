@@ -1,5 +1,5 @@
 ---
-services: go
+language: go
 
 env:
   - test_script: hello-go
