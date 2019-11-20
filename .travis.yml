@@ -1,10 +1,14 @@
 ---
 language: go
 
-env:
-  - test_script: hello-go
-  - test_script: hello-go-container
-  - test_script: hello-go-automation
+jobs:
+  include:
+    - language: go
+      env: test_script=hello-go
+    - language: go
+      env: test_script=hello-go-container
+    - language: python
+      env: test_script=hello-go-automation
 
 script:
   - ${PWD}/tests/${test_script}.sh
