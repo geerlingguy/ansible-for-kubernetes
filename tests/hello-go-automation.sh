@@ -15,8 +15,7 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 chmod +x minikube && sudo mv minikube /usr/local/bin/
 
 # Install Ansible.
-sudo apt-get install -y python3
-pip3 install ansible openshift
+pip install ansible openshift
 
 # Start minikube (without the VM driver).
 sudo minikube start --vm-driver=none
