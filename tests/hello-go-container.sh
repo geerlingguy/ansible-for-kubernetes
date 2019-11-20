@@ -1,7 +1,11 @@
 #!/bin/bash
 #
 # Tests for hello-go example container build.
+set -e
+
 cd hello-go
+
+# Build hello-go image.
 docker build -t hello-go .
 docker run -d --rm -p 8180:8180 hello-go
 

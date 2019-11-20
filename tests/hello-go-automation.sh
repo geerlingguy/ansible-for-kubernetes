@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 # Tests for hello-go-automation playbook.
+set -e
+
 cd hello-go-automation
 
 export CHANGE_MINIKUBE_NONE_USER=true
@@ -15,8 +17,8 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 chmod +x minikube && sudo mv minikube /usr/local/bin/
 
 # Install Ansible.
-sudo apt-get install -y python3-pip
-pip3 install ansible openshift --user
+sudo apt-get install -y python-pip
+pip install ansible openshift --user
 
 # Start minikube (without the VM driver).
 sudo minikube start --vm-driver=none
