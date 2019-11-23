@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  connection: local
   gather_facts: false
 
   vars:
@@ -27,7 +26,7 @@
       register: image_hash
       changed_when: false
 
-    - name: Build Docker image if it's not already built.
+    - name: Build image if it's not already built.
       shell: |
         eval $(minikube docker-env)
         docker build -f ../hello-go/Dockerfile -t {{ image_name }} ../hello-go

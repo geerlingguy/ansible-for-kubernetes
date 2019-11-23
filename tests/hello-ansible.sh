@@ -12,4 +12,4 @@ pip install ansible ansible-lint
 ansible-lint main.yml
 
 # Run the Ansible playbooks.
-ansible-playbook main.yml
+ansible-playbook -i inventory main.yml

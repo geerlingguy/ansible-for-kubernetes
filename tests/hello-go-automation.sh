@@ -26,7 +26,7 @@ JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.ty
   until kubectl get nodes -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1; done
 
 # Once Minikube is started, run the Ansible playbook.
-ansible-playbook main.yml
+ansible-playbook -i inventory main.yml
 
 # Get the Hello Go URL from Minikube.
 HELLO_GO_URL=$(minikube service hello-go --url=true)
