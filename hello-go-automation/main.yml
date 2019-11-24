@@ -54,7 +54,7 @@
               spec:
                 containers:
                 - name: hello-go
-                  image: hello-go
+                  image: "{{ image_name }}"
                   imagePullPolicy: IfNotPresent
                   ports:
                   - containerPort: 8180
