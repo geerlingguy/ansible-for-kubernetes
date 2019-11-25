@@ -23,3 +23,14 @@ Once you're finished testing the Hello Go app in the Kubernetes cluster, you can
     kubectl delete deployment hello-go
 
 The above commands assume you have `kubectl` installed.
+
+### Scaling playbooks
+
+There are two playbooks used to demonstrate scaling resources with Ansible:
+
+  1. `scale-k8s_scale.yml`: Scales the hello-go deployment using Ansible's `k8s_scale` module.
+  2. `scale-strategic-merge.yml`: Scales the hello-go deployment using Ansible's `k8s` module and the `strategic-merge` merge strategy.
+
+Run the playbooks with:
+
+    ansible-playbook -i inventory scale-[type].yml

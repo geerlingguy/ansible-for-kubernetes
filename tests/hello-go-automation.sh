@@ -17,7 +17,10 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 chmod +x minikube && sudo mv minikube /usr/local/bin/
 
 # Install Ansible and required dependencies.
-pip install ansible openshift
+pip install ansible ansible-lint openshift
+
+# Lint the Ansible playbooks.
+ansible-lint *.yml
 
 # Start minikube (without the VM driver).
 sudo minikube start --vm-driver=none
@@ -37,4 +40,16 @@ if curl -s $HELLO_GO_URL | grep "Hello, you requested: /"; then
 else
     echo "Did not receive the correct response."
     exit 1
+fi
+
+# Test the scale-k8s_scale.yml playbook (allow failure until Ansible 2.10).
+ansible-playbook -i inventory scale-k8s_scale.yml || true
+
+# Test the scale-strategic-merge.yml playbook.
+ansible-playbook -i inventory scale-strategic-merge.yml
+
+# Verify there are now 4 pods running.
+if [ ! $(kubectl get pods -l app=hello-go --no-headers | wc -l) -eq "4" ]; then
+  echo "Deployment did not scale to four Pods."
+  exit 1
 fi
