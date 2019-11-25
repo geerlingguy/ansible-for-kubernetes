@@ -79,6 +79,7 @@
   post_tasks:
     - name: Expose Hello Go on the host via Minikube.
       command: minikube service hello-go --url=true
+      changed_when: false
       register: minikube_service
 
     - debug:
