@@ -15,7 +15,7 @@ You will also need to install a Python dependencies via Python Pip:
 
 Once they are installed, you can run the playbook with:
 
-    ansible-playbook main.yml
+    ansible-playbook -i inventory main.yml
 
 Once you're finished testing the Hello Go app in the Kubernetes cluster, you can clean it up by deleting the entire Minikube cluster with `minikube delete`, or you can run the following commands to delete just the necessary resources and leave the Minikube cluster running:
 

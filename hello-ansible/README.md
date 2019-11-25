@@ -4,6 +4,6 @@ The playbook in this directory is an extremely simple and straightforward Ansibl
 
 It is all configured to be run against `localhost` using a `local` connection, and can be run with the following command:
 
-    ansible-playbook main.yml
+    ansible-playbook -i inventory main.yml
 
 This assumes you've already [installed Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
