@@ -12,5 +12,5 @@ pip install ansible ansible-lint docker
 ansible-lint *.yml
 
 # Run the Ansible playbooks.
-ansible-playbook -i inventory registry.yml
-ansible-playbook -i inventory main.yml
+ansible-playbook -i inventory registry.yml -e "{ansible_python_interpreter: '{{ ansible_playbook_python }}'}"
+ansible-playbook -i inventory main.yml -e "{ansible_python_interpreter: '{{ ansible_playbook_python }}'}"

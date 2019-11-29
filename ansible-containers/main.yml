@@ -3,7 +3,6 @@
   gather_facts: false
 
   vars:
-    ansible_python_interpreter: '{{ ansible_playbook_python }}'
     image_name: hello-go
     image_tag: latest
 
