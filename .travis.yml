@@ -11,6 +11,8 @@ jobs:
       env: test_script=hello-go-automation
     - language: python
       env: test_script=hello-ansible
+    - language: python
+      env: test_script=ansible-containers
 
 script:
   - ${PWD}/tests/${test_script}.sh
