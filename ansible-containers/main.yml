@@ -51,6 +51,6 @@
       docker_image:
         name: '{{ image_name }}'
         tag: '{{ image_tag }}'
-        repository: 'localhost:5000/{{ image_name }}:{{ image_tag}}'
+        repository: 'localhost:5000/{{ image_name }}:{{ image_tag }}'
         push: true
         source: local
