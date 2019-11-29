@@ -1,0 +1,56 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  vars:
+    image_name: hello-go
+    image_tag: latest
+
+  tasks:
+    - name: Build the Hello Go image.
+      docker_image:
+        build:
+          path: ../hello-go
+          pull: false
+        name: '{{ image_name }}'
+        tag: '{{ image_tag }}'
+        source: build
+
+    - name: Run the Hello Go image.
+      docker_container:
+        name: hello-go
+        image: '{{ image_name }}:{{ image_tag }}'
+        state: started
+        published_ports:
+          - 8180:8180
+
+    - name: Verify Hello Go is responding.
+      uri:
+        url: http://localhost:8180/test
+        return_content: true
+      register: hello_go_response
+      failed_when: "'/test' not in hello_go_response.content"
+
+    - name: Stop and remove the Hello Go container.
+      docker_container:
+        name: hello-go
+        state: absent
+
+  post_tasks:
+    - name: Log into Docker registry.
+      docker_login:
+        registry: '{{ registry_url }}'
+        username: '{{ registry_username }}'
+        password: '{{ registry_password }}'
+      when:
+        - registry_url is defined and registry_url != ''
+        - registry_username is defined and registry_username != ''
+        - registry_password is defined and registry_password != ''
+
+    - name: Push Hello Go image to Docker registry.
+      docker_image:
+        name: '{{ image_name }}'
+        tag: '{{ image_tag }}'
+        repository: 'localhost:5000/{{ image_name }}:{{ image_tag}}'
+        push: true
+        source: local

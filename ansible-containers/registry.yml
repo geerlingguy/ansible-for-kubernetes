@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  vars:
+    registry_image: registry:2
+
+  tasks:
+    - name: Ensure the Docker registry container is present.
+      docker_image:
+        name: '{{ registry_image }}'
+        source: pull
+
+    - name: Run the Docker Registry container locally.
+      docker_container:
+        name: registry
+        image: '{{ registry_image }}'
+        state: started
+        published_ports:
+          - 5000:5000
