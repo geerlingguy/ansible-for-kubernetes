@@ -7,7 +7,7 @@ cd hello-go
 
 # Build hello-go image.
 docker build -t hello-go .
-docker run -d --rm -p 8180:8180 hello-go
+docker run -d --name hello-go --rm -p 8180:8180 hello-go
 
 # Test the response with curl.
 if curl -s localhost:8180 | grep "Hello, you requested: /"; then

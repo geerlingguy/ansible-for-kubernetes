@@ -21,7 +21,7 @@ When you're finished testing, press "Control + C" on the command line to exit th
 
   1. [Install Docker CE](https://docs.docker.com/v17.09/engine/installation/#desktop) on your computer.
   2. On the command line, in this directory, run `docker build -t hello-go .`
-  3. Run the container, bound to port `8180`: `docker run --rm -p 8180:8180 hello-go`
+  3. Run the container, bound to port `8180`: `docker run --name hello-go --rm -p 8180:8180 hello-go`
 
 This will start a webserver on port 8180. In a web browser, access `http://localhost:8180/testing`. If everything's working, you should receive a 200 OK response, and the content:
 
