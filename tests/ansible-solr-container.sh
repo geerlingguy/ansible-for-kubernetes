@@ -11,6 +11,9 @@ pip install ansible ansible-lint docker
 # Lint the Ansible solr container playbook.
 ansible-lint
 
+# Install playbook dependencies.
+ansible-galaxy install -r requirements.yml
+
 # Run the Ansible playbook.
 ansible-playbook -i inventory main.yml
 
