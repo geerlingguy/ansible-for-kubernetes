@@ -14,8 +14,11 @@ ansible-lint
 # Install playbook dependencies.
 ansible-galaxy install -r requirements.yml
 
+# Get the current python binary in use.
+export ANSIBLE_PYTHON_INTERPRETER=$(which python)
+
 # Run the Ansible playbook.
-ANSIBLE_PYTHON_INTERPRETER=auto ansible-playbook -i inventory main.yml
+ansible-playbook -i inventory main.yml
 
 # Run the test playbook to verify the image works.
-ANSIBLE_PYTHON_INTERPRETER=auto ansible-playbook -i inventory test.yml
+ansible-playbook -i inventory test.yml
