@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# Tests for ansible-solr-container playbook.
+set -e
+
+cd ansible-solr-container
+
+# Install Ansible and required dependencies.
+pip install ansible ansible-lint docker
+
+# Lint the Ansible solr container playbook.
+ansible-lint
+
+# Run the Ansible playbook.
+ansible-playbook -i inventory main.yml
+
+# Run the test playbook to verify the image works.
+ansible-playbook -i inventory test.yml

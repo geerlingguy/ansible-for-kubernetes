@@ -13,6 +13,8 @@ jobs:
       env: test_script=hello-ansible
     - language: python
       env: test_script=ansible-containers
+    - language: python
+      env: test_script=ansible-solr-container
 
 script:
   - ${PWD}/tests/${test_script}.sh

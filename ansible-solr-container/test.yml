@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  vars_files:
+    - vars/main.yml
+
+  pre_tasks:
+    - name: Run the solr container.
+      docker_container:
+        image: 'ansible-for-kubernetes/solr:{{ solr_version }}'
+        name: '{{ container_name }}-test'
+        command: [/opt/solr/bin/solr start -p 8983 -f -force]
+        published_ports:
+          - 8983:8983
+
+  tasks:
+    - name: Verify Solr is responding.
+      uri:
+        url: http://localhost:8983/solr/collection1/admin/ping
+        return_content: true
+      register: solr_response
+      until:
+        - solr_response.json is defined
+        - solr_response.json.status is defined
+        - solr_response.json.status == 'OK'
+      retries: 5
+      delay: 5
+
+  post_tasks:
+    - name: Stop and remove the solr container.
+      docker_container:
+        name: '{{ container_name }}-test'
+        state: absent
