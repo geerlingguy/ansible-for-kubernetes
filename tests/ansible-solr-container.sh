@@ -15,7 +15,7 @@ ansible-lint
 ansible-galaxy install -r requirements.yml
 
 # Run the Ansible playbook.
-ansible-playbook -i inventory main.yml
+ANSIBLE_PYTHON_INTERPRETER=auto ansible-playbook -i inventory main.yml
 
 # Run the test playbook to verify the image works.
-ansible-playbook -i inventory test.yml
+ANSIBLE_PYTHON_INTERPRETER=auto ansible-playbook -i inventory test.yml
