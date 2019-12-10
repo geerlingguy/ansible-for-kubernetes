@@ -1,3 +1,4 @@
 ---
-- src: geerlingguy.java
-- src: geerlingguy.solr
+roles:
+  - name: geerlingguy.java
+  - name: geerlingguy.solr

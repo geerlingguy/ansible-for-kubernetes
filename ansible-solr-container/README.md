@@ -11,7 +11,7 @@ In this example, Ansible is used to:
 
 Effectively the same as using a `Dockerfile` and `docker build`, but built using Ansible's automation engine, which offers more flexibility for advanced use cases, or supporting numerous different base images and distributions—or for supporting an application build on both legacy servers and inside containers, with shared automation and configuration code.
 
-> If you want a maintained Solr container to use in your infrastructure, I recommend using the [`geerlingguy/solr` image](https://hub.docker.com/r/geerlingguy/solr/), available on Docker Hub. It is built [using a similar playbook](https://github.com/geerlingguy/solr-container), but is available to pull from anywhere, and has tags available for many Solr versions.
+> If you want a maintained Apache Solr container to use in your infrastructure, I recommend using the [`geerlingguy/solr` image](https://hub.docker.com/r/geerlingguy/solr/), available on Docker Hub. It is built [using a similar playbook](https://github.com/geerlingguy/solr-container), but is available to pull from anywhere, and has tags available for many Solr versions.
 
 ## Usage
 
