@@ -10,7 +10,6 @@
       docker_container:
         image: 'ansible-for-kubernetes/solr:{{ solr_version }}'
         name: '{{ container_name }}-test'
-        command: [/opt/solr/bin/solr start -p 8983 -f -force]
         published_ports:
           - 8983:8983
 

@@ -5,6 +5,3 @@ java_packages:
   - openjdk-11-jdk
 
 solr_version: "8.3.1"
-
-container_working_dir: /
-container_start_command: '["/opt/solr/bin/solr", "start", "-f", "-force"]'

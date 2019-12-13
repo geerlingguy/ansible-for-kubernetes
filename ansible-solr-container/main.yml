@@ -53,8 +53,8 @@
     - name: Commit the container.
       command: >
         docker commit
-        -c 'CMD {{ container_start_command }}'
-        -c 'WORKDIR {{ container_working_dir }}'
+        -c 'CMD ["/opt/solr/bin/solr", "start", "-f", "-force"]'
+        -c 'WORKDIR /var/solr'
         {{ container_name }} ansible-for-kubernetes/solr:{{ solr_version }}
 
     - name: Remove the container.
