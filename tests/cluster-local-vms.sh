@@ -15,4 +15,4 @@ ansible-lint main.yml
 docker-compose up -d
 
 # Execute the Cluster playbook inside the controller container.
-docker-compose exec controller bash -c "ansible-playbook -i inventory main.yml"
+docker-compose exec controller bash -c "cd /opt/ansible && ansible-playbook -i inventory main.yml"
