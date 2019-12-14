@@ -10,7 +10,7 @@ services:
         ipv4_address: 192.168.7.9
     volumes:
       - ./:/opt/ansible/:rw,delegated
-      - /usr/local/bin/docker:/usr/bin/docker
+      - /usr/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock
 
   kube1:

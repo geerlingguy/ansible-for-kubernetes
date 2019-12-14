@@ -12,6 +12,7 @@ pip install ansible ansible-lint
 ansible-lint main.yml
 
 # Set up the Cluster containers.
+which docker
 docker-compose up -d
 
 # Execute the Cluster playbook inside the controller container.
