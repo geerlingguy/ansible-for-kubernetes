@@ -15,4 +15,5 @@ ansible-lint main.yml
 docker-compose up -d
 
 # Execute the Cluster playbook inside the controller container.
+docker-compose exec controller bash -c "cd /opt/ansible && ansible-galaxy install -r requirements.yml"
 docker-compose exec controller bash -c "cd /opt/ansible && ansible-playbook -i inventory main.yml"
