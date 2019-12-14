@@ -1,0 +1,28 @@
+---
+# Ansible configuration.
+ansible_python_interpreter: auto
+
+# Docker configuration.
+docker_install_compose: false
+docker_users:
+  - vagrant
+
+# Swap configuration.
+swap_file_state: absent
+swap_file_path: /dev/mapper/packer--debian--10--amd64--vg-swap_1
+
+# Kubernetes configuration.
+kubernetes_master_ip: '192.168.7.2'
+kubernetes_allow_pods_on_master: false
+kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }}'
+kubernetes_pod_network_cidr: '10.244.0.0/16'
+kubernetes_version: '1.15'
+kubernetes_packages:
+  - name: kubelet=1.15.0-00
+    state: present
+  - name: kubectl=1.15.0-00
+    state: present
+  - name: kubeadm=1.15.0-00
+    state: present
+  - name: kubernetes-cni
+    state: present

@@ -1,2 +1,2 @@
 hello-go/hello
-ansible-solr-container/roles/geerlingguy.*
+*/roles/geerlingguy.*

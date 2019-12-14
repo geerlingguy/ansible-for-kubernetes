@@ -1,0 +1,26 @@
+---
+- hosts: kube
+  become: true
+
+  vars_files:
+    - vars/main.yml
+
+  pre_tasks:
+    # See: https://github.com/kubernetes/kubernetes/issues/71305
+    - name: Use iptables-legacy instead of nftables.
+      alternatives:
+        name: iptables
+        path: /usr/sbin/iptables-legacy
+
+  roles:
+    - role: geerlingguy.security
+      tags: ['security']
+
+    - role: geerlingguy.swap
+      tags: ['always', 'swap']
+
+    - role: geerlingguy.docker
+      tags: ['docker']
+
+    - role: geerlingguy.kubernetes
+      tags: ['kubernetes']
