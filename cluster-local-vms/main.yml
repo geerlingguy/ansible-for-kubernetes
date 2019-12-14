@@ -18,7 +18,8 @@
       tags: ['security']
 
     - role: geerlingguy.swap
-      tags: ['always', 'swap']
+      tags: ['swap']
+      when: ansible_connection != 'docker'
 
     - role: geerlingguy.docker
       tags: ['docker']
