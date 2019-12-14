@@ -11,6 +11,7 @@
       alternatives:
         name: iptables
         path: /usr/sbin/iptables-legacy
+      when: ansible_connection != 'docker'
 
   roles:
     - role: geerlingguy.security

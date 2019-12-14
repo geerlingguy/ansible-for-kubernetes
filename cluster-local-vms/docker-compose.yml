@@ -1,34 +1,35 @@
 version: '3'
 
 services:
-  controller:
-    container_name: controller
-    privileged: true
-    image: geerlingguy/docker-debian10-ansible
-    networks:
-      kube_net:
-        ipv4_address: 192.168.7.9
-    volumes:
-      - ./:/opt/ansible/:rw,delegated
-      - /var/run/docker.sock:/var/run/docker.sock
-
   kube1:
     container_name: kube1
+    privileged: true
     image: geerlingguy/docker-debian10-ansible
+    command: /lib/systemd/systemd
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     networks:
       kube_net:
         ipv4_address: 192.168.7.2
 
   kube2:
     container_name: kube2
+    privileged: true
     image: geerlingguy/docker-debian10-ansible
+    command: /lib/systemd/systemd
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     networks:
       kube_net:
         ipv4_address: 192.168.7.3
 
   kube3:
     container_name: kube3
+    privileged: true
     image: geerlingguy/docker-debian10-ansible
+    command: /lib/systemd/systemd
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     networks:
       kube_net:
         ipv4_address: 192.168.7.4
