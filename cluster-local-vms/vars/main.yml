@@ -18,14 +18,13 @@ kubernetes_allow_pods_on_master: false
 kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }} --fail-swap-on=false'
 # (TODO Docker needs).
 kubernetes_join_command_extra_opts: '--ignore-preflight-errors=Swap,FileContent--proc-sys-net-bridge-bridge-nf-call-iptables'
-kubernetes_pod_network_cidr: '10.244.0.0/16'
-kubernetes_version: '1.15'
+kubernetes_version: '1.16'
 kubernetes_packages:
-  - name: kubelet=1.15.0-00
+  - name: kubelet=1.16.4-00
     state: present
-  - name: kubectl=1.15.0-00
+  - name: kubectl=1.16.4-00
     state: present
-  - name: kubeadm=1.15.0-00
+  - name: kubeadm=1.16.4-00
     state: present
   - name: kubernetes-cni
     state: present
