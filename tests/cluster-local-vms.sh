@@ -21,4 +21,4 @@ docker-compose up -d
 ansible-playbook -i inventory-docker test-prep.yml
 
 # Execute the Cluster playbook.
-ansible-playbook -i inventory-docker main.yml -vvvv
+ansible-playbook -i inventory-docker main.yml
