@@ -11,23 +11,5 @@
     kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }} --fail-swap-on=false'
     kubernetes_join_command_extra_opts: '--ignore-preflight-errors=Swap,FileContent--proc-sys-net-bridge-bridge-nf-call-iptables'
     kubernetes_apt_ignore_key_error: true
+    docker_restart_handler_state: started
   when: ansible_connection == 'docker'
-
-- name: Ensure curl is installed.
-  package:
-    name: curl
-    state: present
-
-- name: Add some other apt key (using curl).
-  shell: >
-    curl -L http://deb.opera.com/archive.key | sudo apt-key add -
-
-# - name: Add Kubernetes apt key (using curl).
-#   shell: >
-#     curl -L https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-
-- name: Add Kubernetes apt key.
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    state: present
-  register: add_repository_key
