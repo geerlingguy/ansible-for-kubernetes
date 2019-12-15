@@ -11,6 +11,7 @@
     kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }} --fail-swap-on=false'
     kubernetes_join_command_extra_opts: '--ignore-preflight-errors=Swap,FileContent--proc-sys-net-bridge-bridge-nf-call-iptables'
     kubernetes_apt_ignore_key_error: true
+    docker_users: []
     docker_restart_handler_state: started
-    security_ssh_restart_handler_state: started
+    security_ssh_restart_handler_state: stopped
   when: ansible_connection == 'docker'
