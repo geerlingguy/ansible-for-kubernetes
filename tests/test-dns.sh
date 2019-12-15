@@ -21,4 +21,5 @@ docker rm -f curltest
 # Try running docker-compose-based things and see if DNS resolves.
 cd cluster-local-vms
 docker-compose up -d
+docker-compose exec kube2 bash -c "apt update && apt install -y curl"
 docker-compose exec kube2 bash -c "curl --head https://packages.cloud.google.com/apt/doc/apt-key.gpg"
