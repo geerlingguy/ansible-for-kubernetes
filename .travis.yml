@@ -4,8 +4,6 @@ language: go
 jobs:
   include:
     - language: python
-      env: test_script=test-dns
-    - language: python
       env: test_script=cluster-local-vms
 
 script:
