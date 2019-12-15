@@ -17,8 +17,5 @@ ansible-lint main.yml
 # Set up the Cluster containers.
 docker-compose up -d
 
-# Execute the Cluster prepare playbook.
-ansible-playbook -i inventory-docker test-prep.yml
-
 # Execute the Cluster playbook.
 ansible-playbook -i inventory-docker main.yml
