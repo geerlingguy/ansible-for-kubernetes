@@ -8,10 +8,9 @@ services:
     command: /lib/systemd/systemd
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    dns: 8.8.8.8
-    networks:
-      kube_net:
-        ipv4_address: 192.168.7.2
+    # networks:
+    #   kube_net:
+    #     ipv4_address: 192.168.7.2
 
   kube2:
     container_name: kube2
@@ -20,10 +19,9 @@ services:
     command: /lib/systemd/systemd
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    dns: 8.8.8.8
-    networks:
-      kube_net:
-        ipv4_address: 192.168.7.3
+    # networks:
+    #   kube_net:
+    #     ipv4_address: 192.168.7.3
 
   kube3:
     container_name: kube3
@@ -32,14 +30,13 @@ services:
     command: /lib/systemd/systemd
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    dns: 8.8.8.8
-    networks:
-      kube_net:
-        ipv4_address: 192.168.7.4
+    # networks:
+    #   kube_net:
+    #     ipv4_address: 192.168.7.4
 
-networks:
-  kube_net:
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.7.0/24
+# networks:
+#   kube_net:
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 192.168.7.0/24

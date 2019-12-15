@@ -12,15 +12,8 @@ swap_file_state: absent
 swap_file_path: /dev/mapper/packer--debian--10--amd64--vg-swap_1
 
 # Kubernetes configuration.
-kubernetes_master_ip: '192.168.7.2'
-kubernetes_pod_network:
-  cni: 'calico'
-  cidr: '192.168.0.0/16'
 kubernetes_allow_pods_on_master: false
-# (TODO Docker needs fail-swap-on).
-kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }} --fail-swap-on=false'
-# (TODO Docker needs).
-kubernetes_join_command_extra_opts: '--ignore-preflight-errors=Swap,FileContent--proc-sys-net-bridge-bridge-nf-call-iptables'
+kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }}'
 kubernetes_version: '1.16'
 kubernetes_packages:
   - name: kubelet=1.16.4-00

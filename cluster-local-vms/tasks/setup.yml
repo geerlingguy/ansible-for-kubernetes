@@ -1,0 +1,13 @@
+---
+# See: https://github.com/kubernetes/kubernetes/issues/71305
+- name: Use iptables-legacy instead of nftables.
+  alternatives:
+    name: iptables
+    path: /usr/sbin/iptables-legacy
+  when: ansible_connection != 'docker'
+
+- name: Set variables for Docker-based cluster testing.
+  set_fact:
+    kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }} --fail-swap-on=false'
+    kubernetes_join_command_extra_opts: '--ignore-preflight-errors=Swap,FileContent--proc-sys-net-bridge-bridge-nf-call-iptables'
+  when: ansible_connection == 'docker'

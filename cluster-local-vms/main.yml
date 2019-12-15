@@ -6,12 +6,7 @@
     - vars/main.yml
 
   pre_tasks:
-    # See: https://github.com/kubernetes/kubernetes/issues/71305
-    - name: Use iptables-legacy instead of nftables.
-      alternatives:
-        name: iptables
-        path: /usr/sbin/iptables-legacy
-      when: ansible_connection != 'docker'
+    - include_tasks: tasks/setup.yml
 
   roles:
     - role: geerlingguy.security
