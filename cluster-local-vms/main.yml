@@ -11,6 +11,7 @@
   roles:
     - role: geerlingguy.security
       tags: ['security']
+      when: ansible_connection != 'docker'
 
     - role: geerlingguy.swap
       tags: ['swap']
