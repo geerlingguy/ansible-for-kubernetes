@@ -17,7 +17,7 @@ if [ "$TRAVIS" == "true" ]; then
 
   # Write Docker daemon config.
   echo '{
-    "experimental": true,
+    "exec-opts": ["native.cgroupdriver=systemd"],
     "storage-driver": "overlay2"
   }' | sudo tee /etc/docker/daemon.json
 
