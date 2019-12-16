@@ -14,5 +14,5 @@
     docker_users: []
     docker_service_state: stopped
     docker_service_enabled: false
-    docker_restart_handler_state: started
+    docker_restart_handler_state: stopped
   when: ansible_connection == 'docker'
