@@ -38,7 +38,7 @@ ansible-lint main.yml
 docker-compose up -d
 
 # Execute the Cluster playbook.
-ansible-playbook -i inventory-docker main.yml -vvvv || true
+ansible-playbook -i inventory-docker main.yml -vv || true
 
 # Get some debug info.
 docker-compose exec kube1 bash -c "journalctl --no-pager -u kubelet"
