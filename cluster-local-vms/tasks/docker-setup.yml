@@ -7,6 +7,7 @@
 
 - name: Set variables for Docker-based cluster testing.
   set_fact:
+    kubernetes_kubeadm_init_extra_opts: '--v=5'
     kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }} --fail-swap-on=false'
     kubernetes_join_command_extra_opts: '--ignore-preflight-errors=Swap,FileContent--proc-sys-net-bridge-bridge-nf-call-iptables'
     docker_users: []
