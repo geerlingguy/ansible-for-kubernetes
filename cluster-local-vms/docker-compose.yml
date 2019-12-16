@@ -10,8 +10,8 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /etc/docker/daemon.json:/etc/docker/daemon.json:ro
       - type: bind
-        source: /tmp/docker
-        target: /var/lib/docker/kube1
+        source: /tmp/docker/kube1
+        target: /var/lib/docker
     networks:
       kube_net:
         ipv4_address: 192.168.7.2
@@ -25,8 +25,8 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /etc/docker/daemon.json:/etc/docker/daemon.json:ro
       - type: bind
-        source: /tmp/docker
-        target: /var/lib/docker/kube2
+        source: /tmp/docker/kube2
+        target: /var/lib/docker
     networks:
       kube_net:
         ipv4_address: 192.168.7.3
@@ -40,8 +40,8 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /etc/docker/daemon.json:/etc/docker/daemon.json:ro
       - type: bind
-        source: /tmp/docker
-        target: /var/lib/docker/kube3
+        source: /tmp/docker/kube3
+        target: /var/lib/docker
     networks:
       kube_net:
         ipv4_address: 192.168.7.4

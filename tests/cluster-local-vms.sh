@@ -33,8 +33,8 @@ docker-compose up -d
 ansible-playbook -i inventory-docker main.yml || true
 
 # Get some debug info.
-docker-compose exec kube1 bash -c "systemctl status docker.service"
-docker-compose exec kube2 bash -c "systemctl status docker.service"
+docker-compose exec kube1 bash -c "systemctl status docker.service --no-pager --full"
+docker-compose exec kube2 bash -c "systemctl status docker.service --no-pager --full"
 docker-compose exec kube1 bash -c "journalctl --no-pager -u docker"
 docker-compose exec kube2 bash -c "journalctl --no-pager -u docker"
 docker-compose exec kube1 bash -c "journalctl --no-pager -u kubelet"
