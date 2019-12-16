@@ -11,7 +11,7 @@ services:
       - /etc/docker/daemon.json:/etc/docker/daemon.json:ro
       - type: bind
         source: /tmp/docker
-        target: /var/lib/docker
+        target: /var/lib/docker/kube1
     networks:
       kube_net:
         ipv4_address: 192.168.7.2
@@ -26,7 +26,7 @@ services:
       - /etc/docker/daemon.json:/etc/docker/daemon.json:ro
       - type: bind
         source: /tmp/docker
-        target: /var/lib/docker
+        target: /var/lib/docker/kube2
     networks:
       kube_net:
         ipv4_address: 192.168.7.3
@@ -41,7 +41,7 @@ services:
       - /etc/docker/daemon.json:/etc/docker/daemon.json:ro
       - type: bind
         source: /tmp/docker
-        target: /var/lib/docker
+        target: /var/lib/docker/kube3
     networks:
       kube_net:
         ipv4_address: 192.168.7.4

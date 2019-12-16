@@ -7,7 +7,9 @@ cd cluster-local-vms
 
 # If on Travis CI, update Docker's configuration.
 if [ "$TRAVIS" == "true" ]; then
-  mkdir /tmp/docker
+  mkdir -p /tmp/docker/kube1
+  mkdir -p /tmp/docker/kube2
+  mkdir -p /tmp/docker/kube3
   echo '{
     "experimental": true,
     "storage-driver": "overlay2"
@@ -31,4 +33,8 @@ docker-compose up -d
 ansible-playbook -i inventory-docker main.yml || true
 
 # Get some debug info.
+docker-compose exec kube1 bash -c "systemctl status docker.service"
+docker-compose exec kube2 bash -c "systemctl status docker.service"
+docker-compose exec kube1 bash -c "journalctl --no-pager -u docker"
+docker-compose exec kube2 bash -c "journalctl --no-pager -u docker"
 docker-compose exec kube1 bash -c "journalctl --no-pager -u kubelet"
