@@ -12,7 +12,8 @@ if [ "$TRAVIS" == "true" ]; then
   mkdir -p /tmp/docker/kube3
   echo '{
     "experimental": true,
-    "storage-driver": "overlay2"
+    "storage-driver": "overlay2",
+    "dns": ["1.1.1.1", "1.0.0.1"]
   }' | sudo tee /etc/docker/daemon.json
   sudo service docker restart
 fi
