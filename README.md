@@ -24,6 +24,10 @@ Here is an outline of all the examples contained in this repository, by chapter:
   - [`ansible-containers`](ansible-containers/): An Ansible-driven way of building a container image for the Hello Go app.
   - [`ansible-solr-container`](ansible-solr-container/): An end-to-end playbook for building an Apache Solr container image and testing it using Ansible's Docker connection plugin, without using a Dockerfile.
 
+### Chapter 4
+
+  - [`cluster-local-vms`](cluster-local-vms/): A Kubernetes cluster running on three local VirtualBox VMs, built with Vagrant and Ansible.
+
 ## License
 
 MIT

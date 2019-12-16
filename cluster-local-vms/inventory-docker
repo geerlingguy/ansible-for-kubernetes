@@ -1,8 +1,0 @@
-[kube]
-kube1 kubernetes_role=master
-kube2 kubernetes_role=node
-kube3 kubernetes_role=node
-
-[kube:vars]
-ansible_connection=docker
-kubernetes_apiserver_advertise_address=192.168.7.2

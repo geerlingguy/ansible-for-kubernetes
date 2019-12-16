@@ -18,8 +18,3 @@
 
     - role: geerlingguy.kubernetes
       tags: ['kubernetes']
-
-  # The pre_tasks are only required when running in the Docker environment.
-  pre_tasks:
-    - include_tasks: tasks/docker-setup.yml
-      when: ansible_connection == 'docker'
