@@ -6,6 +6,12 @@
     path: /usr/sbin/iptables-legacy
   when: ansible_connection != 'docker'
 
+- name: Ensure SSH is installed.
+  package:
+    name: openssh-server
+    state: present
+  when: ansible_connection == 'docker'
+
 - name: Set variables for Docker-based cluster testing.
   set_fact:
     kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }} --fail-swap-on=false'
