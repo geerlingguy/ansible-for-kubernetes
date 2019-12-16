@@ -17,11 +17,8 @@
       tags: ['swap']
       when: ansible_connection != 'docker'
 
+    - role: geerlingguy.docker
+      tags: ['docker']
+
     - role: geerlingguy.kubernetes
       tags: ['kubernetes']
-
-    # - role: geerlingguy.docker
-    #   tags: ['docker']
-
-    # - role: geerlingguy.kubernetes
-    #   tags: ['kubernetes']
