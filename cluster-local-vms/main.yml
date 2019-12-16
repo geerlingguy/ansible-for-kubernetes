@@ -1,0 +1,25 @@
+---
+- hosts: kube
+  become: true
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+    - role: geerlingguy.security
+      tags: ['security']
+
+    - role: geerlingguy.swap
+      tags: ['swap']
+      when: ansible_connection != 'docker'
+
+    - role: geerlingguy.docker
+      tags: ['docker']
+
+    - role: geerlingguy.kubernetes
+      tags: ['kubernetes']
+
+  # The pre_tasks are only required when running in the Docker environment.
+  pre_tasks:
+    - include_tasks: tasks/docker-setup.yml
+      when: ansible_connection == 'docker'
