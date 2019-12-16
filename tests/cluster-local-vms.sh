@@ -42,3 +42,4 @@ ansible-playbook -i inventory-docker main.yml -vvvv || true
 
 # Get some debug info.
 docker-compose exec kube1 bash -c "journalctl --no-pager -u kubelet"
+docker-compose exec kube1 bash -c "cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf"

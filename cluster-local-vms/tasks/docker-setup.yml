@@ -5,6 +5,12 @@
     name: openssh-server
     state: present
 
+- name: Print hostname.
+  command: hostname
+
+- name: Print ansible_host.
+  debug: var=ansible_host
+
 - name: Set variables for Docker-based cluster testing.
   set_fact:
     kubernetes_kubeadm_init_extra_opts: '--v=5'
