@@ -38,8 +38,8 @@ ansible-lint main.yml
 docker-compose up -d
 
 # Execute the Cluster playbook.
-ansible-playbook -i inventory-docker main.yml -vv || true
+# TODO: Currently kubelet never completes setup on Travis CI, so this fails.
+ansible-playbook -i inventory-docker main.yml || true
 
 # Get some debug info.
 docker-compose exec kube1 bash -c "journalctl --no-pager -u kubelet"
-docker-compose exec kube1 bash -c "cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf"

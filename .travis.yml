@@ -3,6 +3,18 @@ language: go
 
 jobs:
   include:
+    - language: go
+      env: test_script=hello-go
+    - language: go
+      env: test_script=hello-go-container
+    - language: python
+      env: test_script=hello-go-automation
+    - language: python
+      env: test_script=hello-ansible
+    - language: python
+      env: test_script=ansible-containers
+    - language: python
+      env: test_script=ansible-solr-container
     - language: python
       env: test_script=cluster-local-vms
 
