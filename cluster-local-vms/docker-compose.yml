@@ -8,6 +8,10 @@ services:
     command: /lib/systemd/systemd
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/docker/daemon.json:/etc/docker/daemon.json:ro
+      - type: bind
+        source: /tmp/docker
+        target: /var/lib/docker
     networks:
       kube_net:
         ipv4_address: 192.168.7.2
@@ -19,6 +23,10 @@ services:
     command: /lib/systemd/systemd
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/docker/daemon.json:/etc/docker/daemon.json:ro
+      - type: bind
+        source: /tmp/docker
+        target: /var/lib/docker
     networks:
       kube_net:
         ipv4_address: 192.168.7.3
@@ -30,6 +38,10 @@ services:
     command: /lib/systemd/systemd
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/docker/daemon.json:/etc/docker/daemon.json:ro
+      - type: bind
+        source: /tmp/docker
+        target: /var/lib/docker
     networks:
       kube_net:
         ipv4_address: 192.168.7.4
