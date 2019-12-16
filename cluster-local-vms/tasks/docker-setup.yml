@@ -11,6 +11,6 @@
     kubernetes_join_command_extra_opts: '--ignore-preflight-errors=Swap,FileContent--proc-sys-net-bridge-bridge-nf-call-iptables'
     kubernetes_apt_ignore_key_error: true
     docker_users: []
-    docker_service_state: stopped
+    # docker_service_state: stopped
     docker_service_enabled: false
     docker_restart_handler_state: stopped
