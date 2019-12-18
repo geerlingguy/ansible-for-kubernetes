@@ -1,0 +1,42 @@
+---
+- hosts: kube1
+  become: true
+
+  vars_files:
+    - vars/main.yml
+
+  pre_tasks:
+    - name: Ensure k8s module dependencies are installed.
+      pip:
+        name: openshift
+        state: present
+
+  tasks:
+    - name: Create hello-k8s Deployment and Service.
+      k8s:
+        state: present
+        definition: "{{ lookup('file', 'files/' + item) }}"
+      with_items:
+        - hello-k8s-deployment.yml
+        - hello-k8s-service.yml
+
+    - name: Wait for hello-k8s pods to be ready.
+      command: >
+        kubectl wait --for=condition=Ready
+        pods --selector app=hello-k8s --timeout=60s
+      changed_when: false
+
+    - name: Get hello-k8s service details.
+      k8s_info:
+        kind: Service
+        name: hello-k8s
+        namespace: default
+      register: svc
+
+    - name: Set the service NodePort as a variable.
+      set_fact:
+        port: "{{ svc['resources'][0]['spec']['ports'][0]['nodePort'] }}"
+
+    - name: Test a request to the service.
+      uri:
+        url: http://{{ ansible_host }}:{{ port }}/

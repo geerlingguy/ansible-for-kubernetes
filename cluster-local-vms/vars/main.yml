@@ -1,7 +1,4 @@
 ---
-# Ansible configuration.
-ansible_python_interpreter: auto
-
 # Docker configuration.
 docker_install_compose: false
 docker_users:
@@ -15,12 +12,3 @@ swap_file_path: /dev/mapper/packer--debian--10--amd64--vg-swap_1
 kubernetes_allow_pods_on_master: false
 kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }}'
 kubernetes_version: '1.16'
-kubernetes_packages:
-  - name: kubelet=1.16.4-00
-    state: present
-  - name: kubectl=1.16.4-00
-    state: present
-  - name: kubeadm=1.16.4-00
-    state: present
-  - name: kubernetes-cni
-    state: present

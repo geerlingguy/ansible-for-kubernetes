@@ -11,5 +11,6 @@ pip install ansible ansible-lint
 # Install requirements.
 ansible-galaxy install -r requirements.yml
 
-# Lint the Cluster playbook.
+# Lint the Cluster playbooks.
 ansible-lint main.yml
+ansible-lint test-deployment.yml
