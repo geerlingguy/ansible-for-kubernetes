@@ -1,0 +1,27 @@
+---
+# See: https://github.com/kubernetes/kubernetes/issues/71305
+- name: Use iptables-legacy instead of nftables.
+  alternatives:
+    name: '{{ item.name }}'
+    path: '{{ item.path }}'
+  with_items:
+    - { name: iptables, path: /usr/sbin/iptables-legacy }
+    - { name: ip6tables, path: /usr/sbin/ip6tables-legacy }
+
+# See: https://www.jeffgeerling.com/k8s-cni-virtualbox
+- name: Retrieve current Flannel manifest from GitHub.
+  get_url:
+    url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    dest: ~/kube-flannel.yml
+  when: inventory_hostname == 'kube1'
+
+- name: Patch Flannel manifest with VirtualBox interface.
+  patch:
+    src: files/kube-flannel-patch.txt
+    dest: ~/kube-flannel.yml
+  when: inventory_hostname == 'kube1'
+
+- name: Set the correct path for the patched Flannel manifest.
+  set_fact:
+    kubernetes_flannel_manifest_file: ~/kube-flannel.yml
+  when: inventory_hostname == 'kube1'
