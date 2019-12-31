@@ -9,7 +9,6 @@ Prerequisites:
   - You must have an AWS account to run this example.
   - You must use an IAM account with privileges to create VPCs, Internet Gateways, EKS Clusters, Security Groups, etc.
   - This IAM account will inherit the `system:master` permissions in the cluster, and only that account will be able to make the initial changes to the cluster via `kubectl` or Ansible.
-  - In your AWS account, you must have an EC2 Key Pair named `eks-example` (or change the name of the `aws_key_name` in `vars/main.yml` to a Key Pair you'd like to use).
 
 ### Build the Cluster via CloudFormation Templates with Ansible
 
@@ -44,12 +43,33 @@ After the cluster and nodegroup are created, you should see one EKS cluster and 
      kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   19m
      ```
 
-## Managing the EKS Cluster with Ansible
+### Deploy an application to EKS with Ansible
 
-TODO.
+There is a `deploy.yml` playbook which deploys a Wordpress website (using MySQL for a database and EBS PVs for persistent storage) into the Kubernetes cluster.
 
-## Delete the cluster and resources
+Run the playbook to deploy the website:
+
+    $ ansible-playbook -i inventory deploy.yml
+
+### Manage DNS for Wordpress with Route53 and Ansible
+
+If you set the following variables inside `vars/main.yml`, the Ansible playbook will also create a DNS A record pointing to the Wordpress Load Balancer for you:
+
+    wordpress_route53_zone: example.com
+    wordpress_route53_domain: wordpress.example.com
+
+Using this feature presumes you already have the hosted zone (e.g. `example.com`) configured in Route53.
+
+> Note: If you don't have a zone configured in Route 53, you can leave these settings blank, and access the load balancer URL via DNS directly. You can find the load balancer's direct URL in the AWS Management Console, in the ELB's details in EC2 > Load Balancers.
+
+### Install Wordpress
+
+After you run the playbook, you can visit your website URL (e.g. `http://wordpress.example.com/`) in a browser, and you should see the Wordpress installer. Follow the installation instructions, and you'll end up with a new Wordpress site.
+
+### Delete the cluster and associated resources
 
 After you're finished testing the cluster, run the `delete.yml` playbook:
 
     $ ansible-playbook -i inventory delete.yml
+
+> Note: It's important to delete test clusters you're not actively using; running EKS clusters cost hundreds of dollars per month!

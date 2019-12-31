@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Configure networking and a VPC for an EKS cluster.
+Description: VPC and network configuration for an EKS cluster.
 
 Parameters:
 

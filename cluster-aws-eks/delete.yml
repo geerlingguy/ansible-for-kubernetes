@@ -6,6 +6,51 @@
     - vars/main.yml
 
   tasks:
+    - name: Get Route53 hosted zones (if configured).
+      route53_zone:
+        zone: '{{ wordpress_route53_zone }}'
+      register: hosted_zone
+      when: wordpress_route53_zone != ''
+
+    - name: Get Route53 record (if configured).
+      route53_info:
+        profile: "{{ aws_profile }}"
+        type: A
+        query: record_sets
+        start_record_name: '{{ wordpress_route53_domain }}'
+        hosted_zone_id: '{{ hosted_zone.zone_id }}'
+        hosted_zone_method: list_by_name
+      register: route53_record
+      when: wordpress_route53_domain != ''
+
+    - name: Delete Route53 record (if found).
+      route53:
+        profile: "{{ aws_profile }}"
+        zone: '{{ wordpress_route53_zone }}'
+        record: '{{ wordpress_route53_domain }}.'
+        state: absent
+        type: A
+        ttl: 300
+        value: "{{ route53_record['ResourceRecordSets'][0]['AliasTarget']['DNSName'] }}"
+        alias: true
+        alias_hosted_zone_id: "{{ route53_record['ResourceRecordSets'][0]['AliasTarget']['HostedZoneId'] }}"
+      when:
+        - route53_record['ResourceRecordSets'][0]['AliasTarget'] is defined
+        - wordpress_route53_domain in route53_record['ResourceRecordSets'][0]['Name']
+
+    - name: Delete Wordpress resources.
+      k8s:
+        definition: '{{ item }}'
+        kubeconfig: '{{ k8s_kubeconfig }}'
+        state: absent
+      loop:
+        - "{{ lookup('template', 'wordpress/mysql.yml') | from_yaml_all | list }}"
+        - "{{ lookup('template', 'wordpress/wordpress.yml') | from_yaml_all | list }}"
+
+    - name: Pause execution for two minutes for resource deletion.
+      pause:
+        minutes: 2
+
     - name: Delete CloudFormation stacks.
       cloudformation:
         stack_name: "{{ item }}"

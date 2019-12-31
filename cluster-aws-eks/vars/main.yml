@@ -16,3 +16,13 @@ eks_kubernetes_version: "1.14"
 eks_nodegroup_name: eks-example-nodegroup
 eks_nodegroup_instance_type: t3.medium
 eks_nodegroup_cluster_size: 3
+
+# Wordpress settings.
+wordpress_mysql_password: ebJYfAi2QjhPsR
+
+# Domain settings for Route53 DNS.
+wordpress_route53_zone: hostedapachesolr.com
+wordpress_route53_domain: wordpress.hostedapachesolr.com
+
+# Kubeconfig settings.
+k8s_kubeconfig: ~/.kube/eks-example

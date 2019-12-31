@@ -1,0 +1,67 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - name: Deploy Wordpress secrets.
+      k8s:
+        definition: '{{ item }}'
+        kubeconfig: '{{ k8s_kubeconfig }}'
+        state: present
+      loop: "{{ lookup('template', 'wordpress/mysql-pass.yml') | from_yaml_all | list }}"
+      no_log: true
+
+    - name: Deploy MySQL and Wordpress.
+      k8s:
+        definition: '{{ item }}'
+        kubeconfig: '{{ k8s_kubeconfig }}'
+        state: present
+      loop:
+        - "{{ lookup('template', 'wordpress/mysql.yml') | from_yaml_all | list }}"
+        - "{{ lookup('template', 'wordpress/wordpress.yml') | from_yaml_all | list }}"
+
+    - name: Get load balancer DNS name.
+      k8s_info:
+        kubeconfig: '{{ k8s_kubeconfig }}'
+        kind: Service
+        name: wordpress
+        namespace: default
+      register: wordpress_svc
+
+    - name: Set the load balancer URL as a fact.
+      set_fact:
+        wordpress_lb_host: "{{ wordpress_svc['resources'][0]['status']['loadBalancer']['ingress'][0]['hostname'] }}"
+
+    - name: Wait for Load Balancer to respond.
+      uri:
+        url: "http://{{ wordpress_lb_host }}"
+      register: lb_result
+      until: lb_result.status == 200
+      retries: 60
+      delay: 5
+
+    - name: Get ELB info.
+      ec2_elb_info:
+        region: "{{ aws_region }}"
+        profile: "{{ aws_profile }}"
+        names: "{{ wordpress_lb_host.split('-')[0] }}"
+      register: elb_info
+
+    - name: Add an A record in Route53 (if configured).
+      route53:
+        profile: "{{ aws_profile }}"
+        zone: '{{ wordpress_route53_zone }}'
+        record: '{{ wordpress_route53_domain }}'
+        state: present
+        type: A
+        ttl: 300
+        value: '{{ wordpress_lb_host }}.'
+        alias: true
+        alias_hosted_zone_id: "{{ elb_info['elbs'][0]['canonical_hosted_zone_name_id'] }}"
+        wait: true
+      when:
+        - wordpress_route53_zone != ''
+        - wordpress_route53_domain != ''
