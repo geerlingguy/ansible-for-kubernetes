@@ -1,0 +1,23 @@
+---
+apiVersion: drupal.drupal.org/v1alpha1
+kind: Drupal
+metadata:
+  name: drupal
+  namespace: mysite
+spec:
+  drupal_image: 'drupal:8.8-apache'
+  drupal_hash_salt: 'fe918c992fb1bcfa01f32303c8b21f3d0a0'
+
+  # The size of the files directory PVC.
+  files_pvc_size: 1Gi
+
+  # Database options (will be used regardless of database location).
+  database_name: db
+  database_username: db_user
+  database_password: drupal
+  database_host: 'mariadb-0.mariadb.mysite.svc.cluster.local'
+  manage_database: false
+
+  # Ingress options.
+  manage_ingress: true
+  drupal_hostname: mysite.test

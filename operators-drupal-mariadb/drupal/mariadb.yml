@@ -1,0 +1,12 @@
+---
+apiVersion: mariadb.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  name: mariadb
+  namespace: mysite
+spec:
+  masters: 1
+  replicas: 0
+  mariadb_password: drupal
+  mariadb_image: mariadb:10.4
+  mariadb_pvc_storage_request: 1Gi
