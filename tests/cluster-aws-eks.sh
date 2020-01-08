@@ -6,7 +6,7 @@ set -e
 cd cluster-aws-eks
 
 # Install AWS CLI.
-pip3 install awscli yamllint ansible
+pip3 install awscli yamllint cfn-lint ansible
 
 # Export AWS vars.
 export AWS_DEFAULT_REGION=us-east-1
