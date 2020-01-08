@@ -61,7 +61,6 @@
           NodeGroupDesiredCapacity: "{{ eks_nodegroup_cluster_size }}"
           NodeInstanceType: "{{ eks_nodegroup_instance_type }}"
           Subnets: "{{ stack_outputs.Subnets }}"
-          VpcId: "{{ stack_outputs.VpcId }}"
         tags:
           stack: eks-example-nodegroup
           application: eks-example

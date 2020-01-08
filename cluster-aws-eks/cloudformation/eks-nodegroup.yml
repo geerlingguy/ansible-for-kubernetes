@@ -1,3 +1,4 @@
+---
 AWSTemplateFormatVersion: "2010-09-09"
 Description: 'EKS Nodegroup definition.'
 
@@ -24,10 +25,6 @@ Parameters:
   Subnets:
     Type: "List<AWS::EC2::Subnet::Id>"
     Description: The subnets where workers can be created.
-
-  VpcId:
-    Type: "AWS::EC2::VPC::Id"
-    Description: The VPC of the worker instances.
 
 Resources:
 

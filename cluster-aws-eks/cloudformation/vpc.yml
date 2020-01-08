@@ -1,3 +1,4 @@
+---
 AWSTemplateFormatVersion: '2010-09-09'
 Description: VPC and network configuration for an EKS cluster.
 
@@ -18,8 +19,8 @@ Resources:
         Fn::Sub: '${Region}a'
       CidrBlock: 172.16.0.0/18
       Tags:
-      - Key: Name
-        Value: eks-example-a
+        - Key: Name
+          Value: eks-example-a
 
   Subnet1aRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -32,7 +33,6 @@ Resources:
     Properties:
       SubnetId: !Ref Subnet1a
       NetworkAclId: !Ref NetworkAcl
-    DependsOn: NetworkAcl
 
   Subnet1b:
     Type: AWS::EC2::Subnet
@@ -42,8 +42,8 @@ Resources:
         Fn::Sub: '${Region}b'
       CidrBlock: 172.16.64.0/18
       Tags:
-      - Key: Name
-        Value: eks-example-b
+        - Key: Name
+          Value: eks-example-b
 
   Subnet1bRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -56,7 +56,6 @@ Resources:
     Properties:
       SubnetId: !Ref Subnet1b
       NetworkAclId: !Ref NetworkAcl
-    DependsOn: NetworkAcl
 
   Subnet1c:
     Type: AWS::EC2::Subnet
@@ -66,8 +65,8 @@ Resources:
         Fn::Sub: '${Region}c'
       CidrBlock: 172.16.128.0/18
       Tags:
-      - Key: Name
-        Value: eks-example-c
+        - Key: Name
+          Value: eks-example-c
 
   Subnet1cRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -80,24 +79,23 @@ Resources:
     Properties:
       SubnetId: !Ref Subnet1c
       NetworkAclId: !Ref NetworkAcl
-    DependsOn: NetworkAcl
 
   VPC:
     Type: AWS::EC2::VPC
     Properties:
       CidrBlock: 172.16.0.0/16
-      EnableDnsSupport: 'true'
-      EnableDnsHostnames: 'true'
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
       Tags:
-      - Key: Name
-        Value: eks-example
+        - Key: Name
+          Value: eks-example
 
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
       Tags:
-      - Key: Name
-        Value: eks-example
+        - Key: Name
+          Value: eks-example
 
   AttachGateway:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -110,8 +108,8 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       Tags:
-      - Key: Name
-        Value: eks-example
+        - Key: Name
+          Value: eks-example
 
   Route:
     Type: AWS::EC2::Route
@@ -126,36 +124,34 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       Tags:
-      - Key: Name
-        Value: eks-example
+        - Key: Name
+          Value: eks-example
 
   InboundNetworkAclEntrySSH:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref NetworkAcl
-      RuleNumber: '100'
+      RuleNumber: 100
       RuleAction: allow
-      Protocol: '-1'
-      Egress: 'false'
+      Protocol: -1
+      Egress: false
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '22'
-        To: '22'
-    DependsOn: NetworkAcl
+        From: 22
+        To: 22
 
   OutboundNetworkAclEntryAll:
     Type: AWS::EC2::NetworkAclEntry
     Properties:
       NetworkAclId: !Ref NetworkAcl
-      RuleNumber: '101'
+      RuleNumber: 101
       RuleAction: allow
-      Protocol: '-1'
-      Egress: 'true'
+      Protocol: -1
+      Egress: true
       CidrBlock: 0.0.0.0/0
       PortRange:
-        From: '0'
-        To: '65535'
-    DependsOn: NetworkAcl
+        From: 0
+        To: 65535
 
 Outputs:
 

@@ -34,6 +34,7 @@
     - name: Set the load balancer URL as a fact.
       set_fact:
         wordpress_lb_host: "{{ wordpress_svc['resources'][0]['status']['loadBalancer']['ingress'][0]['hostname'] }}"
+      when: aws_environment | bool
 
     - name: Wait for Load Balancer to respond.
       uri:
@@ -42,6 +43,7 @@
       until: lb_result.status == 200
       retries: 60
       delay: 5
+      when: aws_environment | bool
 
     - name: Get ELB info.
       ec2_elb_info:
@@ -49,6 +51,7 @@
         profile: "{{ aws_profile }}"
         names: "{{ wordpress_lb_host.split('-')[0] }}"
       register: elb_info
+      when: aws_environment | bool
 
     - name: Add an A record in Route53 (if configured).
       route53:
@@ -63,5 +66,6 @@
         alias_hosted_zone_id: "{{ elb_info['elbs'][0]['canonical_hosted_zone_name_id'] }}"
         wait: true
       when:
+        - aws_environment | bool
         - wordpress_route53_zone != ''
         - wordpress_route53_domain != ''
