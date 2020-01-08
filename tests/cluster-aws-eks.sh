@@ -10,7 +10,7 @@ pip3 install awscli yamllint ansible
 
 # Validate Cloudformation templates.
 for template in cloudformation/*.yml; do
-  aws cloudformation validate-template --template-body file://$template
+  aws cloudformation validate-template --template-body file://$template --region us-east-1
   yamllint --strict $template
   cfn-lint --include-checks I --template $template
 done
