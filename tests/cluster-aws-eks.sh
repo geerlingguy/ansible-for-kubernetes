@@ -8,11 +8,15 @@ cd cluster-aws-eks
 # Install AWS CLI.
 pip3 install awscli yamllint ansible
 
+# Export AWS vars.
+export AWS_DEFAULT_REGION=us-east-1
+
 # Validate Cloudformation templates.
 for template in cloudformation/*.yml; do
-  aws cloudformation validate-template --template-body file://$template --region us-east-1
   yamllint --strict $template
   cfn-lint --include-checks I --template $template
+  # validate-template requires valid AWS Credentials :(
+  # aws cloudformation validate-template --template-body file://$template --region us-east-1
 done
 
 # Check ansible playbooks for correctness.
