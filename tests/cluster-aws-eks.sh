@@ -6,12 +6,13 @@ set -e
 cd cluster-aws-eks
 
 # Install AWS CLI.
-pip3 install awscli yamllint cfn-lint ansible
+pip3 install awscli yamllint cfn-lint ansible-lint ansible
 
 # Export AWS vars.
 export AWS_DEFAULT_REGION=us-east-1
 
 # Validate Cloudformation templates.
+echo "Validating CloudFormation templates..."
 for template in cloudformation/*.yml; do
   yamllint --strict $template
   cfn-lint --include-checks I --template $template
