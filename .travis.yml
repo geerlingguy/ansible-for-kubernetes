@@ -20,5 +20,8 @@ jobs:
     - language: python
       env: test_script=cluster-aws-eks
 
+before_script:
+  - export -f travis_fold
+
 script:
   - ${PWD}/tests/${test_script}.sh
