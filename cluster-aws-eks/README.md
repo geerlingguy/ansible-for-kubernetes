@@ -51,7 +51,7 @@ Run the playbook to deploy the website:
 
     $ ansible-playbook -i inventory deploy.yml
 
-### Manage DNS for Wordpress with Route53 and Ansible
+#### Manage DNS for Wordpress with Route53 and Ansible
 
 If you set the following variables inside `vars/main.yml`, the Ansible playbook will also create a DNS A record pointing to the Wordpress Load Balancer for you:
 

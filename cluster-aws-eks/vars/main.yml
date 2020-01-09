@@ -22,8 +22,8 @@ eks_nodegroup_cluster_size: 3
 wordpress_mysql_password: ebJYfAi2QjhPsR
 
 # Domain settings for Route53 DNS.
-wordpress_route53_zone: hostedapachesolr.com
-wordpress_route53_domain: wordpress.hostedapachesolr.com
+wordpress_route53_zone: '' # e.g. 'example.com'
+wordpress_route53_domain: '' # e.g. 'wordpress.example.com'
 
 # Kubernetes settings.
 k8s_kubeconfig: ~/.kube/eks-example
