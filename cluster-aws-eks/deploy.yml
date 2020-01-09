@@ -12,7 +12,7 @@
         kubeconfig: '{{ k8s_kubeconfig }}'
         state: present
       loop: "{{ lookup('template', 'wordpress/mysql-pass.yml') | from_yaml_all | list }}"
-      no_log: true
+      no_log: k8s_no_log
 
     - name: Deploy MySQL and Wordpress.
       k8s:

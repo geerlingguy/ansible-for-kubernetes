@@ -25,5 +25,6 @@ wordpress_mysql_password: ebJYfAi2QjhPsR
 wordpress_route53_zone: hostedapachesolr.com
 wordpress_route53_domain: wordpress.hostedapachesolr.com
 
-# Kubeconfig settings.
+# Kubernetes settings.
 k8s_kubeconfig: ~/.kube/eks-example
+k8s_no_log: true

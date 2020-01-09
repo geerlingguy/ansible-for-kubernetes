@@ -28,6 +28,7 @@ echo "Linting playbooks with ansible-lint..."
 ansible-lint $playbooks
 
 # Prepare a Kind cluster.
+echo "Preparing Kind cluster..."
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
@@ -40,7 +41,8 @@ kind create cluster --name=test --quiet
 # Test Wordpress manifests in Kind cluster.
 ansible-playbook -i inventory deploy.yml \
   -e "k8s_kubeconfig=$KUBECONFIG" \
-  -e "aws_environment=false"
+  -e "aws_environment=false" \
+  -e "k8s_no_log=false"
 
 # Verify Wordpress service is present.
 kubectl get service wordpress
