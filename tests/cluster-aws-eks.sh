@@ -6,7 +6,7 @@ set -e
 cd cluster-aws-eks
 
 # Install AWS CLI.
-pip3 install awscli yamllint cfn-lint ansible-lint ansible
+pip3 install awscli yamllint cfn-lint ansible-lint ansible openshift
 
 # Export AWS vars.
 export AWS_DEFAULT_REGION=us-east-1
@@ -35,7 +35,7 @@ curl -Lo kind https://github.com/kubernetes-sigs/kind/releases/download/v0.6.1/k
 chmod +x kind
 sudo mv kind /usr/local/bin/
 export KUBECONFIG="${HOME}/.kube/kind-config-test"
-kind create cluster --name=test
+kind create cluster --name=test --quiet
 
 # Test Wordpress manifests in Kind cluster.
 ansible-playbook -i inventory deploy.yml \
