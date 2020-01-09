@@ -42,7 +42,7 @@ kind create cluster --name=test --quiet
 travis_fold end "prepare.kind.cluster"
 
 # Test Wordpress manifests in Kind cluster.
-ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3 \
+ANSIBLE_PYTHON_INTERPRETER=$(which python3) \
 ansible-playbook -i inventory deploy.yml \
   -e "k8s_kubeconfig=$KUBECONFIG" \
   -e "aws_environment=false" \
