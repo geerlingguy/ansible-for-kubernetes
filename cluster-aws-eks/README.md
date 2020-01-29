@@ -72,4 +72,4 @@ After you're finished testing the cluster, run the `delete.yml` playbook:
 
     $ ansible-playbook -i inventory delete.yml
 
-> Note: It's important to delete test clusters you're not actively using; running EKS clusters cost hundreds of dollars per month!
+> Note: It's important to delete test clusters you're not actively using; each cluster is billed at the [EKS cluster hourly rate](https://aws.amazon.com/eks/pricing/) and can lead to unexpected charges at the end of the month!
