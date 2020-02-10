@@ -18,7 +18,7 @@ eks_nodegroup_name: eks-example-nodegroup
 eks_nodegroup_instance_type: t3.medium
 eks_nodegroup_cluster_size: 3
 
-# Wordpress settings.
+# WordPress settings.
 wordpress_mysql_password: ebJYfAi2QjhPsR
 
 # Domain settings for Route53 DNS.

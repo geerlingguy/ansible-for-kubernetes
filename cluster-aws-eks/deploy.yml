@@ -6,7 +6,7 @@
     - vars/main.yml
 
   tasks:
-    - name: Deploy Wordpress secrets.
+    - name: Deploy WordPress secrets.
       k8s:
         definition: '{{ item }}'
         kubeconfig: '{{ k8s_kubeconfig }}'
@@ -14,7 +14,7 @@
       loop: "{{ lookup('template', 'wordpress/mysql-pass.yml') | from_yaml_all | list }}"
       no_log: k8s_no_log
 
-    - name: Deploy MySQL and Wordpress.
+    - name: Deploy MySQL and WordPress.
       k8s:
         definition: '{{ item }}'
         kubeconfig: '{{ k8s_kubeconfig }}'

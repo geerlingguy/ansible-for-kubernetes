@@ -45,15 +45,15 @@ After the cluster and nodegroup are created, you should see one EKS cluster and 
 
 ### Deploy an application to EKS with Ansible
 
-There is a `deploy.yml` playbook which deploys a Wordpress website (using MySQL for a database and EBS PVs for persistent storage) into the Kubernetes cluster.
+There is a `deploy.yml` playbook which deploys a WordPress website (using MySQL for a database and EBS PVs for persistent storage) into the Kubernetes cluster.
 
 Run the playbook to deploy the website:
 
     $ ansible-playbook -i inventory deploy.yml
 
-#### Manage DNS for Wordpress with Route53 and Ansible
+#### Manage DNS for WordPress with Route53 and Ansible
 
-If you set the following variables inside `vars/main.yml`, the Ansible playbook will also create a DNS A record pointing to the Wordpress Load Balancer for you:
+If you set the following variables inside `vars/main.yml`, the Ansible playbook will also create a DNS A record pointing to the WordPress Load Balancer for you:
 
     wordpress_route53_zone: example.com
     wordpress_route53_domain: wordpress.example.com
@@ -62,9 +62,9 @@ Using this feature presumes you already have the hosted zone (e.g. `example.com`
 
 > Note: If you don't have a zone configured in Route 53, you can leave these settings blank, and access the load balancer URL via DNS directly. You can find the load balancer's direct URL in the AWS Management Console, in the ELB's details in EC2 > Load Balancers.
 
-### Install Wordpress
+### Install WordPress
 
-After you run the playbook, you can visit your website URL (e.g. `http://wordpress.example.com/`) in a browser, and you should see the Wordpress installer. Follow the installation instructions, and you'll end up with a new Wordpress site.
+After you run the playbook, you can visit your website URL (e.g. `http://wordpress.example.com/`) in a browser, and you should see the WordPress installer. Follow the installation instructions, and you'll end up with a new WordPress site.
 
 ### Delete the cluster and associated resources
 
