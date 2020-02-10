@@ -6,7 +6,7 @@
     registry_image: registry:2
 
   tasks:
-    - name: Ensure the Docker registry container is present.
+    - name: Ensure the Docker registry image is present.
       docker_image:
         name: '{{ registry_image }}'
         source: pull
