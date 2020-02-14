@@ -63,23 +63,9 @@ Outputs:
       Name:
         Fn::Sub: "${AWS::StackName}-ClusterName"
 
-  ClusterArn:
-    Value: !GetAtt Cluster.Arn
-    Description: Cluster Arn
-    Export:
-      Name:
-        Fn::Sub: "${AWS::StackName}-ClusterArn"
-
   ClusterEndpoint:
     Value: !GetAtt Cluster.Endpoint
     Description: Cluster Endpoint
     Export:
       Name:
         Fn::Sub: "${AWS::StackName}-ClusterEndpoint"
-
-  ClusterControlPlaneSecurityGroup:
-    Value: !Ref ClusterControlPlaneSecurityGroup
-    Description: ClusterControlPlaneSecurityGroup
-    Export:
-      Name:
-        Fn::Sub: "${AWS::StackName}-ClusterControlPlaneSecurityGroup"

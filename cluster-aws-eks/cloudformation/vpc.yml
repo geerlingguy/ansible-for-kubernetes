@@ -159,10 +159,6 @@ Outputs:
     Description: VPC id
     Value: !Ref VPC
 
-  AvailabilityZones:
-    Description: List of Availability Zones available in the VPC
-    Value: us-east-1a,us-east-1b,us-east-1c
-
   Subnets:
     Description: List of Subnets in the VPC
     Value:
