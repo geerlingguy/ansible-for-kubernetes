@@ -47,7 +47,7 @@
       set_fact:
         stack_outputs: "{{ stack_outputs | combine(eks_cluster_info['stack_outputs']) }}"
 
-    - name: Ensure EKS Nodegroup exists via CloudFormation.
+    - name: Ensure EKS Node Group exists via CloudFormation.
       cloudformation:
         stack_name: eks-example-nodegroup
         state: present

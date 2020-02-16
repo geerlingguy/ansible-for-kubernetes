@@ -3,7 +3,6 @@
 aws_environment: true
 aws_region: us-east-1
 aws_profile: default
-aws_key_name: eks-example
 
 # This variable will be populated during playbook runs.
 stack_outputs: {}

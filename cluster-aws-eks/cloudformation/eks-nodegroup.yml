@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: "2010-09-09"
-Description: 'EKS Nodegroup definition.'
+Description: 'EKS Node Group definition.'
 
 Parameters:
 
