@@ -12,19 +12,14 @@
         state: present
 
   tasks:
-    - name: Create hello-k8s Deployment and Service.
+    - name: Create hello-k8s resources and wait until they are Ready.
       k8s:
         state: present
         definition: "{{ lookup('file', 'files/' + item) }}"
+        wait: true
       with_items:
         - hello-k8s-deployment.yml
         - hello-k8s-service.yml
-
-    - name: Wait for hello-k8s pods to be ready.
-      command: >
-        kubectl wait --for=condition=Ready
-        pods --selector app=hello-k8s --timeout=60s
-      changed_when: false
 
     - name: Get hello-k8s service details.
       k8s_info:
