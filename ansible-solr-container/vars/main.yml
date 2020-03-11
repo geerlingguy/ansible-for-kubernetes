@@ -4,4 +4,4 @@ container_name: solr
 java_packages:
   - openjdk-11-jdk
 
-solr_version: "8.3.1"
+solr_version: "8.4.1"
