@@ -9,6 +9,7 @@ cd testing-molecule-kind
 pip install ansible ansible-lint molecule
 
 # Install Kind.
+KIND_VERSION="v0.7.0"
 sudo curl -Lo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/"$KIND_VERSION"/kind-linux-amd64
 sudo chmod +x /usr/local/bin/kind
 

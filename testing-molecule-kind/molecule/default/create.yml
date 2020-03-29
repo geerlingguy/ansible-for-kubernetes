@@ -13,8 +13,9 @@
       changed_when: false
 
     - name: Build a kind cluster (pause until control plane is ready).
-      shell: >-
+      command: >-
         kind create cluster
         --wait 300s
         --name molecule-test
         --kubeconfig {{ kubeconfig }}
+      changed_when: true

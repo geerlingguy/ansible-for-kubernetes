@@ -9,7 +9,8 @@
 
   tasks:
     - name: Delete the kind cluster.
-      shell: >-
+      command: >-
         kind delete cluster
         --name molecule-test
         --kubeconfig {{ kubeconfig }}
+      changed_when: false
