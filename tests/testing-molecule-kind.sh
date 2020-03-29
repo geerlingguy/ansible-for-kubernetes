@@ -6,7 +6,7 @@ set -e
 cd testing-molecule-kind
 
 # Install Ansible and required dependencies.
-pip install ansible ansible-lint molecule
+pip install ansible ansible-lint molecule openshift
 
 # Install Kind.
 KIND_VERSION="v0.7.0"
