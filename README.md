@@ -32,6 +32,14 @@ Here is an outline of all the examples contained in this repository, by chapter:
 
   - [`cluster-aws-eks`](cluster-aws-eks/): An AWS EKS Cluster with an EKS Node Group, which uses Ansible to apply CloudFormation templates that set up stacks for a VPC and networking, an EKS Cluster, and an associated EKS Node Group.
 
+### Chapter 6
+
+  - N/A
+
+### Chapter 7
+
+  - [`testing-molecule-kind`](testing-molecule-kind/): A Molecule-based test environment which allows development and testing of Ansible playbooks against a Kind Kubernetes cluster.
+
 ## License
 
 MIT

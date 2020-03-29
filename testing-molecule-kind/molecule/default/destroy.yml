@@ -1,0 +1,15 @@
+---
+- name: Destroy
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    kubeconfig: ~/.kube/config-molecule-test
+
+  tasks:
+    - name: Delete the kind cluster.
+      shell: >-
+        kind delete cluster
+        --name molecule-test
+        --kubeconfig {{ kubeconfig }}
