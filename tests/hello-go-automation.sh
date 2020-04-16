@@ -6,7 +6,7 @@ set -e
 cd hello-go-automation
 
 export CHANGE_MINIKUBE_NONE_USER=true
-export K8s_VERSION="v1.16.2"
+export K8s_VERSION="v1.17.4"
 
 # Install kubectl.
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl

@@ -9,7 +9,7 @@ swap_file_state: absent
 swap_file_path: /dev/mapper/packer--debian--10--amd64--vg-swap_1
 
 # Kubernetes configuration.
-kubernetes_version: '1.16'
+kubernetes_version: '1.17'
 kubernetes_allow_pods_on_master: false
 kubernetes_apiserver_advertise_address: '192.168.7.2'
 kubernetes_kubelet_extra_args: '--node-ip={{ ansible_host }}'
