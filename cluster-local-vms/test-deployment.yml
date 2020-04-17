@@ -35,3 +35,7 @@
     - name: Test a request to the service.
       uri:
         url: http://{{ ansible_host }}:{{ port }}/
+
+    - name: Print the URL for hello-k8s.
+      debug:
+        msg: http://{{ ansible_host }}:{{ port }}/
