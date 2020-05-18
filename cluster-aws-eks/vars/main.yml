@@ -10,7 +10,7 @@ stack_outputs: {}
 # EKS Cluster settings.
 eks_cluster_name: eks-example
 # See: https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html
-eks_kubernetes_version: "1.15"
+eks_kubernetes_version: "1.16"
 
 # Nodegroup settings.
 eks_nodegroup_name: eks-example-nodegroup
