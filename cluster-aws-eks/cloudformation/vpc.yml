@@ -91,6 +91,7 @@ Resources:
       AvailabilityZone:
         Fn::Sub: '${Region}a'
       CidrBlock: 172.16.0.0/18
+      MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
           Value: eks-example-a
@@ -114,6 +115,7 @@ Resources:
       AvailabilityZone:
         Fn::Sub: '${Region}b'
       CidrBlock: 172.16.64.0/18
+      MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
           Value: eks-example-b
@@ -137,6 +139,7 @@ Resources:
       AvailabilityZone:
         Fn::Sub: '${Region}c'
       CidrBlock: 172.16.128.0/18
+      MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
           Value: eks-example-c
