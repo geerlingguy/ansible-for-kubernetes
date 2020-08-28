@@ -1,11 +1,9 @@
 ---
 - name: Converge
   hosts: localhost
-  gather_facts: true
+  connection: local
+  gather_facts: false
 
-  tasks:
-    - name: Verify cluster is working.
-      k8s_info:
-        namespace: kube-system
-        kind: Pod
-      register: pod_list
+  tasks: []
+
+- import_playbook: ../../main.yml

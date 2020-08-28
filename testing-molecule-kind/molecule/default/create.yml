@@ -9,7 +9,7 @@
       command: which kind
       changed_when: false
 
-    - name: Build a kind cluster (pause until control plane is ready).
+    - name: Build a kind cluster (wait for control plane).
       command: >-
         kind create cluster
         --wait 300s

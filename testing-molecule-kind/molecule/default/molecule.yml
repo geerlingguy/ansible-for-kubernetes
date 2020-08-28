@@ -9,7 +9,7 @@ driver:
 lint: |
   set -e
   yamllint .
-  ansible-lint
+  # ansible-lint
 platforms:
   - name: instance-kind
 provisioner:
@@ -20,9 +20,10 @@ provisioner:
     host_vars:
       localhost:
         ansible_python_interpreter: '{{ ansible_playbook_python }}'
-        kubeconfig: ~/.kube/config-molecule-test
-        K8S_AUTH_KUBECONFIG: ~/.kube/config-molecule-test
+        kubeconfig: "{{ lookup('env', 'KUBECONFIG') }}"
   env:
+    KUBECONFIG: ~/.kube/config-molecule-test
+    K8S_AUTH_KUBECONFIG: ~/.kube/config-molecule-test
     PY_COLORS: '1'
     ANSIBLE_FORCE_COLOR: 'true'
   playbooks:
