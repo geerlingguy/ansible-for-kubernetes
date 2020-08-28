@@ -1,0 +1,16 @@
+---
+- name: Verify
+  hosts: localhost
+  gather_facts: true
+
+  tasks:
+    - name: Get 'hello' Job info.
+      k8s_info:
+        kind: Job
+        name: hello
+        namespace: default
+      register: jobs
+
+    - name: Assert that 'hello' Job ran successfully.
+      assert:
+        that: jobs['resources'][0]['status']['succeeded'] == 1

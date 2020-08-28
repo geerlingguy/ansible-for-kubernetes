@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Deploy 'hello' Job.
+      k8s:
+        state: present
+        definition: "{{ lookup('file', 'manifests/hello.yml') }}"
+        wait: true

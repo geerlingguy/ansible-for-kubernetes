@@ -1,0 +1,18 @@
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Ensure kind is installed.
+      command: which kind
+      changed_when: false
+
+    - name: Build a kind cluster (wait for control plane).
+      command: >-
+        kind create cluster
+        --wait 300s
+        --name molecule-test
+        --kubeconfig {{ kubeconfig }}
+      changed_when: true
