@@ -3,9 +3,6 @@
   hosts: localhost
   gather_facts: true
 
-  environment:
-    K8S_AUTH_KUBECONFIG: ~/.kube/config-molecule-test
-
   tasks:
     - name: Verify cluster is working.
       k8s_info:

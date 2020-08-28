@@ -4,9 +4,6 @@
   connection: local
   gather_facts: false
 
-  vars:
-    kubeconfig: ~/.kube/config-molecule-test
-
   tasks:
     - name: Ensure kind is installed.
       command: which kind

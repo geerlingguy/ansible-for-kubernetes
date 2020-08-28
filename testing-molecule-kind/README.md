@@ -1,6 +1,6 @@
 # Testing with Molecule, Kind, and Ansible
 
-This directory contains a Molecule-based test environment which allows development and testing of Ansible playbooks against a Kind Kubernetes cluster.
+This directory contains a Molecule-based test environment which allows development and testing of Ansible playbooks against a [Kind](https://kind.sigs.k8s.io/) Kubernetes cluster.
 
 ## Installing Prerequisites
 
