@@ -2,16 +2,16 @@
 driver:
   name: delegated
   options:
-    managed: true
+    managed: false
     login_cmd_template: 'docker exec -ti {instance} bash'
     ansible_connection_options:
       ansible_connection: docker
 lint: |
   set -e
   yamllint .
-  # ansible-lint
+  ansible-lint
 platforms:
-  - name: instance-kind
+  - name: molecule-test-control-plane
 provisioner:
   name: ansible
   log: true

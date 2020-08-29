@@ -29,3 +29,13 @@ You can also build the cluster and leave it running with:
 After you're finished, tear down the development cluster with:
 
     molecule destroy
+
+## Debugging Kind
+
+If you need to log into the Kind control plane and debug any issues, you can do so with:
+
+    molecule login
+
+Once logged in, you can do things like monitor kubelet's logs:
+
+    journalctl -u kubelet -f
