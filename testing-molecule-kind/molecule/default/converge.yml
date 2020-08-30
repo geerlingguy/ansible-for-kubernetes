@@ -4,6 +4,4 @@
   connection: local
   gather_facts: false
 
-  tasks: []
-
 - import_playbook: ../../main.yml

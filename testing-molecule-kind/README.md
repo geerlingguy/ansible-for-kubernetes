@@ -7,7 +7,7 @@ This directory contains a Molecule-based test environment which allows developme
 Before running the environment, you need to make sure [Molecule](https://molecule.readthedocs.io/en/latest/), [Kind](https://kind.sigs.k8s.io), and [Docker](https://www.docker.com/products/docker-desktop) are installed:
 
   1. `brew install kind docker` (assuming macOS)
-  1. `pip3 install molecule`
+  1. `pip3 install molecule ansible-test yamllint`
 
 ## Running tests
 
@@ -29,13 +29,3 @@ You can also build the cluster and leave it running with:
 After you're finished, tear down the development cluster with:
 
     molecule destroy
-
-## Debugging Kind
-
-If you need to log into the Kind control plane and debug any issues, you can do so with:
-
-    molecule login
-
-Once logged in, you can do things like monitor kubelet's logs:
-
-    journalctl -u kubelet -f

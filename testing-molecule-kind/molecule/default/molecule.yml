@@ -1,11 +1,6 @@
 ---
 driver:
   name: delegated
-  options:
-    managed: true
-    login_cmd_template: 'docker exec -ti {instance} bash'
-    ansible_connection_options:
-      ansible_connection: docker
 lint: |
   set -e
   yamllint .
@@ -14,8 +9,6 @@ platforms:
   - name: molecule-test-control-plane
 provisioner:
   name: ansible
-  log: true
-  lint: {}
   inventory:
     host_vars:
       localhost:
@@ -24,11 +17,5 @@ provisioner:
   env:
     KUBECONFIG: ~/.kube/config-molecule-test
     K8S_AUTH_KUBECONFIG: ~/.kube/config-molecule-test
-    PY_COLORS: '1'
-    ANSIBLE_FORCE_COLOR: 'true'
-  playbooks:
-    create: create.yml
-    converge: converge.yml
-    destroy: destroy.yml
 scenario:
   name: default
