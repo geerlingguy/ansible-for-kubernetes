@@ -6,7 +6,7 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: molecule-test-control-plane
+  - name: molecule-test
 provisioner:
   name: ansible
   inventory:
@@ -17,5 +17,3 @@ provisioner:
   env:
     KUBECONFIG: ~/.kube/config-molecule-test
     K8S_AUTH_KUBECONFIG: ~/.kube/config-molecule-test
-scenario:
-  name: default
