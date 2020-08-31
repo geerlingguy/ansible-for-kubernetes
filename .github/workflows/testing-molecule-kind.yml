@@ -3,7 +3,7 @@ name: Molecule Kind Test
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
   schedule:
     - cron: '0 6 * * *'
