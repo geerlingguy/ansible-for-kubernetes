@@ -15,8 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-        with:
-          path: ansible-for-kubernetes
 
       - name: Set up Python.
         uses: actions/setup-python@v2
