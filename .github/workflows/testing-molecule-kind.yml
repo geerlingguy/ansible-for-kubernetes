@@ -1,6 +1,6 @@
 ---
 name: Molecule Kind Test
-'on':
+on:
   push:
     branches:
       - main
