@@ -1,0 +1,30 @@
+---
+name: Molecule Kind Test
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          path: ansible-for-kubernetes
+
+      - name: Set up Python.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies.
+        run: pip3 install molecule[docker] ansible-lint yamllint
+
+      - name: Run molecule test.
+        run: molecule test
