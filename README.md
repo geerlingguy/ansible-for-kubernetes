@@ -1,6 +1,6 @@
 # Ansible for Kubernetes Examples
 
-[![Build Status](https://travis-ci.org/geerlingguy/ansible-for-kubernetes.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-for-kubernetes) [![GitHub Actions](https://github.com/geerlingguy/ansible-for-kubernetes/workflows/Molecule%20Kind%20Test/badge.svg?branch=master)](https://github.com/geerlingguy/ansible-for-kubernetes/actions?query=workflow%3A%22Molecule+Kind+Test%22)
+[![CI](https://github.com/geerlingguy/ansible-for-kubernetes/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-for-kubernetes/actions?query=workflow%3ACI) [![Molecule Kind Test](https://github.com/geerlingguy/ansible-for-kubernetes/workflows/Molecule%20Kind%20Test/badge.svg?branch=master)](https://github.com/geerlingguy/ansible-for-kubernetes/actions?query=workflow%3A%22Molecule+Kind+Test%22)
 
 This repository contains Ansible and Kubernetes examples developed to support different sections of [Ansible for Kubernetes](https://www.ansibleforkubernetes.com/) by [Jeff Geerling](https://www.jeffgeerling.com/).
 
