@@ -6,7 +6,7 @@ set -e
 cd hello-ansible
 
 # Install Ansible and required dependencies.
-pip install ansible ansible-lint
+pip3 install ansible ansible-lint
 
 # Lint the Hello Ansible playbooks.
 ansible-lint main.yml

@@ -1,0 +1,55 @@
+---
+name: CI
+'on':
+  pull_request:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "40 5 * * 0"
+
+jobs:
+  go:
+    name: Go
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - test_script: hello-go
+          - test_script: hello-go-container
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: "1.15.x"
+
+      - name: Run test script.
+        run: tests/${{ matrix.test_script }}.sh
+
+  python:
+    name: Python
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - test_script: hello-go-automation
+          - test_script: hello-ansible
+          - test_script: ansible-containers
+          - test_script: ansible-solr-container
+          - test_script: cluster-local-vms
+          - test_script: cluster-aws-eks
+          - test_script: testing-molecule-kind
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Run test script.
+        run: tests/${{ matrix.test_script }}.sh
+        env:
+          KIND_VERSION: "v0.9.0"

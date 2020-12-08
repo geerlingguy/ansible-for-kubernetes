@@ -5,9 +5,6 @@ set -e
 
 cd hello-go-automation
 
-export CHANGE_MINIKUBE_NONE_USER=true
-export K8s_VERSION="v1.17.4"
-
 # Install kubectl.
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
 chmod +x kubectl && sudo mv kubectl /usr/local/bin/
@@ -19,13 +16,13 @@ sudo apt-get update
 sudo apt-get install -y conntrack
 
 # Install Ansible and required dependencies.
-pip install ansible ansible-lint openshift
+pip3 install ansible ansible-lint openshift
 
 # Lint the Ansible playbooks.
 ansible-lint *.yml
 
-# Start minikube (without the VM driver).
-sudo minikube start --vm-driver=none
+# Start minikube (without docker driver).
+minikube start --driver=docker
 minikube update-context
 JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; \
   until kubectl get nodes -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1; done

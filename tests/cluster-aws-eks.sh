@@ -6,9 +6,7 @@ set -e
 cd cluster-aws-eks
 
 # Install AWS CLI.
-travis_fold start "install.pip.deps"
 pip3 install awscli yamllint cfn-lint ansible-lint ansible openshift
-travis_fold end "install.pip.deps"
 
 # Export AWS vars.
 export AWS_DEFAULT_REGION=us-east-1
@@ -29,17 +27,18 @@ ansible-playbook -i inventory $playbooks --syntax-check
 echo "Linting playbooks with ansible-lint..."
 ansible-lint $playbooks
 
+# Install Kind.
+KIND_VERSION="v0.9.0"
+sudo curl -Lo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/"${KIND_VERSION}"/kind-linux-amd64
+sudo chmod +x /usr/local/bin/kind
+
+# Install kubectl.
+sudo curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+sudo chmod +x /usr/local/bin/kubectl
+
 # Prepare a Kind cluster.
-travis_fold start "prepare.kind.cluster"
-curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-chmod +x kubectl
-sudo mv kubectl /usr/local/bin/
-curl -Lo kind https://github.com/kubernetes-sigs/kind/releases/download/v0.6.1/kind-linux-amd64
-chmod +x kind
-sudo mv kind /usr/local/bin/
 export KUBECONFIG="${HOME}/.kube/kind-config-test"
 kind create cluster --name=test --quiet
-travis_fold end "prepare.kind.cluster"
 
 # Test WordPress manifests in Kind cluster.
 ANSIBLE_PYTHON_INTERPRETER=$(which python3) \

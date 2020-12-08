@@ -6,11 +6,11 @@ set -e
 cd testing-molecule-kind
 
 # Install Ansible and required dependencies.
-pip install ansible ansible-lint molecule openshift
+pip3 install ansible ansible-lint molecule openshift
 
 # Install Kind.
-KIND_VERSION="v0.8.1"
-sudo curl -Lo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/"$KIND_VERSION"/kind-linux-amd64
+KIND_VERSION="v0.9.0"
+sudo curl -Lo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/"${KIND_VERSION}"/kind-linux-amd64
 sudo chmod +x /usr/local/bin/kind
 
 # Install kubectl.
