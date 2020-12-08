@@ -6,9 +6,7 @@ set -e
 cd cluster-aws-eks
 
 # Install AWS CLI.
-travis_fold start "install.pip.deps"
 pip3 install awscli yamllint cfn-lint ansible-lint ansible openshift
-travis_fold end "install.pip.deps"
 
 # Export AWS vars.
 export AWS_DEFAULT_REGION=us-east-1
