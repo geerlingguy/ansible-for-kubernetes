@@ -6,7 +6,7 @@ set -e
 cd ansible-containers
 
 # Install Ansible and required dependencies.
-pip install ansible ansible-lint docker
+pip3 install ansible ansible-lint docker
 
 # Lint the Ansible container playbooks.
 ansible-lint *.yml

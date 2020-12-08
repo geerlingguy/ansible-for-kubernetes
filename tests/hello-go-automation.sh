@@ -19,7 +19,7 @@ sudo apt-get update
 sudo apt-get install -y conntrack
 
 # Install Ansible and required dependencies.
-pip install ansible ansible-lint openshift
+pip3 install ansible ansible-lint openshift
 
 # Lint the Ansible playbooks.
 ansible-lint *.yml
