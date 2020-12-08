@@ -9,15 +9,14 @@ name: CI
     - cron: "40 5 * * 0"
 
 jobs:
-  go-tests:
-    name: Go Tests
+  go:
+    name: Go
     runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
           - test_script: hello-go
           - test_script: hello-go-container
-          - test_script: centos8
 
     steps:
       - uses: actions/checkout@v2
@@ -27,10 +26,10 @@ jobs:
           go-version: "1.15.x"
 
       - name: Run test script.
-        run: tests/${test_script}.sh
+        run: tests/${{ matrix.test_script }}.sh
 
-  python-tests:
-    name: Python Tests
+  python:
+    name: Python
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -51,6 +50,6 @@ jobs:
           python-version: '3.x'
 
       - name: Run test script.
-        run: tests/${test_script}.sh
+        run: tests/${{ matrix.test_script }}.sh
         env:
           KIND_VERSION: "v0.9.0"
