@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies.
         run: >
           pip3 install molecule docker openshift
-          ansible-lint yamllint
+          ansible ansible-lint yamllint
 
       - name: Run molecule test.
         run: molecule test
