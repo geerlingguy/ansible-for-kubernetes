@@ -82,5 +82,6 @@
       changed_when: false
       register: minikube_service
 
-    - debug:
+    - name: Print Hello Go URL.
+      debug:
         msg: "Hello Go URL: {{ minikube_service['stdout_lines'][0] }}"
