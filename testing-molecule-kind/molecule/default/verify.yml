@@ -5,12 +5,20 @@
   gather_facts: true
 
   tasks:
+    - name: Pause for job to complete.
+      pause:
+        seconds: 5
+
     - name: Get 'hello' Job info.
       k8s_info:
         kind: Job
         name: hello
         namespace: default
       register: jobs
+
+    - name: Debug.
+      debug:
+        var: jobs
 
     - name: Assert that 'hello' Job ran successfully.
       assert:

@@ -9,7 +9,7 @@ cd testing-molecule-kind
 pip3 install ansible ansible-lint molecule openshift
 
 # Install Kind.
-KIND_VERSION="v0.9.0"
+KIND_VERSION="v0.11.1"
 sudo curl -Lo /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/"${KIND_VERSION}"/kind-linux-amd64
 sudo chmod +x /usr/local/bin/kind
 
