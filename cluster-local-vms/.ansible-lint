@@ -5,3 +5,4 @@ skip_list:
   - risky-shell-pipe
   - no-changed-when
   - fqcn-builtins
+  - yaml
