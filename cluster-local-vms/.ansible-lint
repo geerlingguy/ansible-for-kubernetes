@@ -1,5 +1,7 @@
 skip_list:
+  - experimental
   - no-handler
   - role-name
   - risky-shell-pipe
   - no-changed-when
+  - fqcn-builtins

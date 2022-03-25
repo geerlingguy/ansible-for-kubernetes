@@ -1,2 +1,3 @@
 skip_list:
   - no-changed-when
+  - fqcn-builtins
