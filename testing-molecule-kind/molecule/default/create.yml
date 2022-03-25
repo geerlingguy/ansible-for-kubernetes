@@ -6,7 +6,7 @@
 
   tasks:
     - name: Build a kind cluster (wait for control plane).
-      command: >-
+      ansible.builtin.command: >-
         kind create cluster
         --wait 300s
         --name molecule-test

@@ -4,4 +4,4 @@
   connection: local
   gather_facts: false
 
-- import_playbook: ../../main.yml
+- ansible.builtin.import_playbook: ../../main.yml

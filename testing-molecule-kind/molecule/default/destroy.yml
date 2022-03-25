@@ -6,7 +6,7 @@
 
   tasks:
     - name: Delete the kind cluster.
-      command: >-
+      ansible.builtin.command: >-
         kind delete cluster
         --name molecule-test
         --kubeconfig {{ kubeconfig }}

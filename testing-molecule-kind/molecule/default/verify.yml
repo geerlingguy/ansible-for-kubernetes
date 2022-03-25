@@ -6,20 +6,20 @@
 
   tasks:
     - name: Pause for job to complete.
-      pause:
+      ansible.builtin.pause:
         seconds: 5
 
     - name: Get 'hello' Job info.
-      k8s_info:
+      kubernetes.core.k8s_info:
         kind: Job
         name: hello
         namespace: default
       register: jobs
 
     - name: Debug.
-      debug:
+      ansible.builtin.debug:
         var: jobs
 
     - name: Assert that 'hello' Job ran successfully.
-      assert:
+      ansible.builtin.assert:
         that: jobs['resources'][0]['status']['succeeded'] == 1
