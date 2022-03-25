@@ -73,8 +73,8 @@
             ports:
               - port: 8180
                 targetPort: 8180
-              selector:
-                app: hello-go
+            selector:
+              app: hello-go
 
   post_tasks:
     - name: Expose Hello Go on the host via Minikube.
