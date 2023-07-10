@@ -1,5 +1,5 @@
 [kube]
-kube1 ansible_host=192.168.7.2 kubernetes_role=master
+kube1 ansible_host=192.168.7.2 kubernetes_role=control_plane
 kube2 ansible_host=192.168.7.3 kubernetes_role=node
 kube3 ansible_host=192.168.7.4 kubernetes_role=node
 
