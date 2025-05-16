@@ -1,6 +1,6 @@
 ---
 driver:
-  name: delegated
+  name: default
 lint: |
   set -e
   yamllint .
